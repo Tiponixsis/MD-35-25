@@ -7,14 +7,12 @@
 
 int sum = 0;
 int turn = 0;
-bool ispositive = false;
-bool FirstTurn = true; 
-bool ispositiveP2 = false;
-bool FirstTurnP2 = true;
 
 int P1Loop()
 {
     int P1Num;
+    static bool ispositive = false;
+    static bool FirstTurn = true;
 
     std::cout << "Введите число, Игрок 1: \n";
     std::cin >> P1Num;
@@ -40,19 +38,21 @@ int P1Loop()
 int P2Loop()
 {
     int P2Num;
+    static bool ispositive = false;
+    static bool FirstTurn = true;
 
     std::cout << "Введите число, Игрок 2: \n";
     std::cin >> P2Num;
     if ((P2Num >= -5) && (P2Num <= 5)) { // if in range of [-5; 5]
         if (P2Num >= 0) { //if positive then
-            if (ispositiveP2 && !FirstTurnP2) { std::cout << "Ошибка, два положительных подряд. Введите ещё раз.\n"; return P2Loop(); } //check if the last num was positive (not on the 1st turn)
-            ispositiveP2 = true;
+            if (ispositive && !FirstTurn) { std::cout << "Ошибка, два положительных подряд. Введите ещё раз.\n"; return P2Loop(); } //check if the last num was positive (not on the 1st turn)
+            ispositive = true;
         }
         else { //if negative then
-            if (!ispositiveP2 && !FirstTurnP2) { std::cout << "Ошибка, два отрицательных подряд. Введите ещё раз.\n"; return P2Loop(); } //check if the last num was negative (not on the 1st turn)
-            ispositiveP2 = false;
+            if (!ispositive && !FirstTurn) { std::cout << "Ошибка, два отрицательных подряд. Введите ещё раз.\n"; return P2Loop(); } //check if the last num was negative (not on the 1st turn)
+            ispositive = false;
         }
-        FirstTurnP2 = false;
+        FirstTurn = false;
         sum += P2Num;
         ++turn;
         std::cout << "Текущая сумма: " << sum << "\n";
