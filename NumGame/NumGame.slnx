@@ -1,7 +1,0 @@
-<Solution>
-  <Configurations>
-    <Platform Name="x64" />
-    <Platform Name="x86" />
-  </Configurations>
-  <Project Path="NumGame/NumGame.vcxproj" Id="94ae05cc-5ad5-4a28-b869-bc44554d796e" />
-</Solution>
